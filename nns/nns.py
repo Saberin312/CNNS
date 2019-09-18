@@ -1,6 +1,8 @@
 import torch as t
 import torch.nn as nn
 from torch.nn import functional as F
+
+
 ##继承nn.module
 class Linear(nn.Module):  # 继承nn.Module
     def __init__(self, in_features, out_features):
@@ -11,6 +13,7 @@ class Linear(nn.Module):  # 继承nn.Module
     def forward(self, x):
         x = x.mm(self.w)  # x.@(self.w)
         return x + self.b.expand_as(x)
+
 
 # layer = Linear(4,3)
 # input = t.randn(2,4)
@@ -94,6 +97,7 @@ class ResNet(nn.Module):
         x = x.view(x.size(0), -1)
         return self.fc(x)
 
+
 model = ResNet()
-input  = t.randn(1, 3, 224, 224)
+input = t.randn(1, 3, 224, 224)
 o = model(input)
